@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatia A4 - Numerar páginas e registro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>📐 Fatia A4 · Numerar páginas e registro</h1>
+    <div class="sub">Faça upload, veja a imagem, defina o tamanho em cm e fatie em A4 com numeração</div>
+
+    <div class="painel">
+        <!-- Área de upload e preview lado a lado -->
+        <div class="upload-preview-area">
+            <div id="dropArea" class="upload-section">
+                <i>🖼️</i>
+                <h3>Clique ou arraste sua imagem</h3>
+                <p style="color:#64748b; margin-top: 8px;">PNG, JPG ou WebP</p>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            </div>
+            
+            <div class="preview-section">
+                <h3>🔍 Pré-visualização da imagem</h3>
+                <div class="preview-image-container">
+                    <img id="previewImage" class="hide" alt="Preview da imagem">
+                    <div id="previewPlaceholder" class="preview-placeholder">
+                        Nenhuma imagem carregada
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configurações -->
+        <div class="config-grid">
+            <div class="input-group">
+                <label>📏 Largura final (cm)</label>
+                <input type="number" id="larguraCm" step="0.1" min="0.1" value="42.0">
+                <small>Largura após redimensionar</small>
+            </div>
+            <div class="input-group">
+                <label>📏 Altura final (cm)</label>
+                <input type="number" id="alturaCm" step="0.1" min="0.1" value="29.7">
+                <small>Altura após redimensionar</small>
+            </div>
+            <div class="input-group">
+                <label>🖨️ DPI</label>
+                <input type="number" id="dpiInput" step="1" min="72" max="600" value="150">
+                <small>Resolução para impressão</small>
+            </div>
+        </div>
+        
+        <!-- Opções -->
+        <div class="opcoes">
+            <label class="opcao-checkbox">
+                <input type="checkbox" id="manterProporcao" checked> Manter proporção original
+            </label>
+            <label class="opcao-checkbox">
+                <input type="checkbox" id="numerarPaginas" checked> Numerar páginas (Página X/Y)
+            </label>
+            <label class="opcao-checkbox">
+                <input type="checkbox" id="mostrarRegistro" checked> Mostrar registro completo
+            </label>
+        </div>
+
+        <!-- Registro da imagem -->
+        <div id="registroInfo" class="registro-info hide">
+            <strong>📋 REGISTRO DA IMAGEM</strong>
+            <div class="registro-grid" id="registroGrid">
+                <!-- Preenchido via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Informação de pixels -->
+        <div id="infoEscala" class="registro-info hide" style="background: #e0f2fe; border-left-color: #0284c7;">
+            ⚖️ Imagem redimensionada para <span id="infoPxLarg"></span> × <span id="infoPxAlt"></span> pixels (<span id="infoDpi"></span> DPI)
+        </div>
+
+        <div class="botoes">
+            <button class="btn btn-primary" id="processarBtn">✂️ Gerar fatias A4</button>
+            <button class="btn btn-outline" id="resetBtn">↻ Nova imagem</button>
+        </div>
+
+        <div class="dpi-info">
+            <strong>📄 Folha A4:</strong> 21,0 cm × 29,7 cm · Cada fatia terá esse tamanho exato
+        </div>
+    </div>
+
+    <!-- Grade de fatias -->
+    <div id="pedacosContainer" class="grade-visual"></div>
+    <footer>Clique em "BAIXAR" em cada fatia para salvar como PNG</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
